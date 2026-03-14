@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+</head>
+<body>
+    <h1>Simple Calculator</h1>
+    <input type="number" id="number1" placeholder="Enter first number">
+    <input type="number" id="number2" placeholder="Enter second number">
+    <button id="subtractBtn">Subtract</button>
+    <p id="result"></p>
+    <p id="errorMsg" style="color: red;"></p>
+    <script>
+        document.getElementById('subtractBtn').addEventListener('click', function() {
+            const num1 = parseFloat(document.getElementById('number1').value);
+            const num2 = parseFloat(document.getElementById('number2').value);
+            const resultElement = document.getElementById('result');
+            const errorMsgElement = document.getElementById('errorMsg');
+            errorMsgElement.textContent = '';
+            try {
+                const difference = subtract(num1, num2);
+                resultElement.textContent = 'Result: ' + difference;
+            } catch (error) {
+                errorMsgElement.textContent = error.message;
+            }
+        });
+
+        function subtract(a, b) {
+            if (isNaN(a) || isNaN(b)) {
+                throw new Error('Invalid input: Both inputs must be numbers.');
+            }
+            return a - b;
+        }
+    </script>
+</body>
+</html>
